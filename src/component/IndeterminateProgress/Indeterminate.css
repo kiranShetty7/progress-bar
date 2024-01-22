@@ -1,0 +1,23 @@
+.inderminateContainer {
+  width: 40%;
+  height: 1rem;
+  background-color: rgb(171, 192, 236);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.movingContainer {
+  height: 100%;
+  width: 30%;
+  background-color: rgb(52, 104, 215);
+  animation: custom 0.5s linear infinite;
+}
+
+@keyframes custom {
+  0% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}

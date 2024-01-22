@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import * as React from 'react'
 import ProgressBar from './component/ProgressBar';
+import InderminateProgressBar from './component/IndeterminateProgress';
 
 function App() {
   const [loadingPercentage, setLoadingPercentage] = React.useState(0)
@@ -31,10 +32,11 @@ function App() {
 
   return (
     <div className='container'>
-      <ProgressBar
+      {/* <ProgressBar
         role="progressBar"
         value={loadingPercentage}
-      />
+      /> */}
+      <InderminateProgressBar />
       <button className='button' onClick={displayLoader}>Start</button>
     </div>
   );
