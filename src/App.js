@@ -1,23 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
+import * as React from 'react'
+import ProgressBar from './component/ProgressBar';
 
 function App() {
+  const [loadingPercentage, setLoadingPercentage] = React.useState(0)
+  const [loaderInterval, setLoaderInterval] = React.useState(null)
+
+  function displayLoader() {
+
+    if (loaderInterval) {
+      clearInterval(loaderInterval);
+    }
+
+
+    const intervalId = setInterval(() => {
+      setLoadingPercentage(prev => {
+        const newPercentage = prev + 1;
+        if (newPercentage === 100) {
+          clearInterval(intervalId);
+        }
+
+        return newPercentage;
+      });
+    }, 100);
+
+
+    setLoaderInterval(intervalId);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <ProgressBar
+        role="progressBar"
+        value={loadingPercentage}
+      />
+      <button className='button' onClick={displayLoader}>Start</button>
     </div>
   );
 }
